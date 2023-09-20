@@ -51,10 +51,15 @@ function editToy(ev){
     if (!toy) return <div> loading</div>
 const {name, price, inStock}= toy
     return (
-        <form onSubmit={editToy}>
+        <form  onSubmit={editToy}>
+            <label htmlFor="name">Name</label>
             <input onChange={handleChange} type="text" value={name} name="name" id="name" />
+            <label htmlFor="price">Price</label>
+
             <input onChange={handleChange} type="number" value={price} name="price" id="price"/>
+
             <input onChange={handleChange} type="checkbox"checked={inStock} name="inStock" id="inStock" />
+            <label htmlFor="inStock">in Stock</label>
             <button>edit</button>
         </form>
     )

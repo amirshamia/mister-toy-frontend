@@ -55,8 +55,8 @@ function save(toy) {
 
 function getEmptyToy() {
     return {
-        name: 'Susita-' + (Date.now() % 1000),
-        price: utilService.getRandomIntInclusive(1000, 9000),
+        name: 'Toy-' + (Date.now() % 1000),
+        price: utilService.getRandomIntInclusive(100, 500),
         inStock: utilService.getBol(),
         labels: utilService.getRandomLabels()
     }
@@ -64,7 +64,7 @@ function getEmptyToy() {
 
 
 function getDefaultFilter() {
-    return { txt: '', maxPrice: '' }
+    return { name: '', price: '', label:'' }
 }
 
 // TEST DATA

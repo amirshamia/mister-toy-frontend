@@ -4,6 +4,8 @@ import { useEffect } from 'react'
 import { loadToys, removeToyOptimistic, saveToy } from '../store/actions/toy.actions.js'
 import { toyService } from '../services/toy.service.js'
 import { ToyList } from '../cmp/ToyList.jsx'
+import { ToyFilter } from '../cmp/ToyFilter.jsx'
+import { SET_FILTER_BY } from '../store/reducers/toy.reducer.js'
 
 export function ToyIndex(){
     const dispatch = useDispatch()
@@ -43,6 +45,7 @@ export function ToyIndex(){
             })
     }
     function onSetFilter(filterBy) {
+        console.log(filterBy);
         dispatch({ type: SET_FILTER_BY, filterBy })
     }
     return (
@@ -50,7 +53,7 @@ export function ToyIndex(){
             <h3>Toys App</h3>
             <main>
                 <button onClick={onAddToy}>Add Toy </button>
-                {/* <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} /> */}
+                <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
 
                 {!isLoading && <ToyList
                     toys={toys}
