@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { utilService } from "../services/util.service"
+import { ToySort } from "./ToySort"
 
 
 export function ToyFilter({ filterBy, onSetFilter }) {
@@ -40,5 +41,6 @@ export function ToyFilter({ filterBy, onSetFilter }) {
             <label htmlFor="price">Price:
                 <input onChange={handleChange} type="range" name="price" id="maxPrice" min={0} max={500} />
             </label>
+            <ToySort/>
         </section>)
 }

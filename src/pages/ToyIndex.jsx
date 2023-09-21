@@ -10,6 +10,7 @@ import axios from 'axios'
 
 export function ToyIndex() {
     const dispatch = useDispatch()
+    const sortBy = useSelector(storeState => storeState.toyModule.sortBy)
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
     const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
@@ -21,7 +22,7 @@ export function ToyIndex() {
                 console.log('err:', err)
                 showErrorMsg('Cannot load toys')
             })
-    }, [filterBy])
+    }, [filterBy,sortBy])
 
     function onRemoveToy(toyd) {
         // removetoy(toyd)

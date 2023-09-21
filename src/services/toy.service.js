@@ -27,9 +27,15 @@ const toy = {
     inStock: true,
 }
 
-function query(filterBy = {}) {
+function query(filterBy = {}, sortBy) {
     return httpService.get(BASE_URL, filterBy)
-    // .then(toys => {
+        .then(toys => {
+            console.log(sortBy);
+            if (sortBy) {
+                utilService.sortBy(toys, sortBy)
+            }
+            return toys
+        })
     //     return toys.filter(toy =>
     //         regExp.test(toy.vendor) &&
     //         toy.price <= filterBy.maxPrice
@@ -57,7 +63,7 @@ function save(toy) {
 
 function getEmptyToy() {
     let imgUrl
-   return axios.get(`https://api.unsplash.com/search/photos?query=toy&client_id=fdYyDQ-ZI2NK6bXUbdCcF45RIy0Uj4r_UHNNScHxcZo`).then(res => { (imgUrl = res.data.results[utilService.getRandomIntInclusive(0,9)].urls.full) }).then(_ => {
+    return axios.get(`https://api.unsplash.com/search/photos?query=toy&client_id=fdYyDQ-ZI2NK6bXUbdCcF45RIy0Uj4r_UHNNScHxcZo`).then(res => { (imgUrl = res.data.results[utilService.getRandomIntInclusive(0, 9)].urls.full) }).then(_ => {
         return {
             name: 'Toy-' + (Date.now() % 1000),
             price: utilService.getRandomIntInclusive(100, 500),

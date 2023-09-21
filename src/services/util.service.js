@@ -8,7 +8,8 @@ export const utilService = {
     debounce,
     getAssetSrc,
     getBol,
-    getRandomLabels
+    getRandomLabels,
+    sortBy
 }
 
 function makeId(length = 6) {
@@ -96,4 +97,11 @@ function getRandomLabels(){
 labelsToSend.push(labels[getRandomIntInclusive(0,7)])      
     }
     return labelsToSend
+}
+
+function sortBy(items, key, dir =1) {
+    const isInt = ['createdAt', 'price']
+    isInt.includes(key)
+        ? items.sort((a, b) => (a[key] - b[key])*dir)
+        : items.sort((a, b) => a[key].localeCompare(b[key]) *dir)
 }
