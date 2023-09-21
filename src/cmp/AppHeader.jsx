@@ -5,10 +5,12 @@ import { NavLink } from "react-router-dom";
 export function AppHeader() {
 
     return (
-        <header className="app-header">
+        <header className="app-header flex justify-between">
+            <h3>Toys App</h3>
+
             <nav>
                 <NavLink to="/">Home</NavLink> |
-                <NavLink to="/toy">toys</NavLink> |
+                <NavLink to="/toy">Toys</NavLink> |
         
             </nav>
         </header>

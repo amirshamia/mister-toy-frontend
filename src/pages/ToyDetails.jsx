@@ -28,11 +28,13 @@ export function ToyDetails() {
 
     return (
         <section>
+            {console.log(toy.img)}
             <h3> Toy: {toy.name}</h3>
             <h2>Price: {toy.price}$</h2>
             {toy.inStock && <h1>In Stock</h1>}
             <p>{toy.labels.map(label=> <span>{label}  </span> )} </p>
             <button><Link to="/toy">Back</Link></button>
+            <img src={toy.img} alt="a" />
         </section>
     )
 }

@@ -1,17 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { loadToys, removeToyOptimistic, saveToy } from '../store/actions/toy.actions.js'
 import { toyService } from '../services/toy.service.js'
 import { ToyList } from '../cmp/ToyList.jsx'
 import { ToyFilter } from '../cmp/ToyFilter.jsx'
 import { SET_FILTER_BY } from '../store/reducers/toy.reducer.js'
+import axios from 'axios'
 
-export function ToyIndex(){
+export function ToyIndex() {
     const dispatch = useDispatch()
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
     const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
+    const [toyToSave, setToyToSave] = useState()
 
     useEffect(() => {
         loadToys()
@@ -33,9 +35,9 @@ export function ToyIndex(){
             })
     }
     function onAddToy() {
-        const toyToSave = toyService.getEmptyToy()
-
-        saveToy(toyToSave)
+        toyService.getEmptyToy()
+            .then(setToyToSave)
+            .then(saveToy(toyToSave))
             .then(savedToy => {
                 showSuccessMsg(`toy added (id: ${savedToy._id})`)
             })
@@ -50,7 +52,6 @@ export function ToyIndex(){
     }
     return (
         <div>
-            <h3>Toys App</h3>
             <main>
                 <button onClick={onAddToy}>Add Toy </button>
                 <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
@@ -58,7 +59,7 @@ export function ToyIndex(){
                 {!isLoading && <ToyList
                     toys={toys}
                     onRemoveToy={onRemoveToy}
-            
+
                 />
                 }
 

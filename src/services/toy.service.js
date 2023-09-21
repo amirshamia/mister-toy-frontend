@@ -3,6 +3,7 @@ import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 import { httpService } from './http.service.js'
+import axios from 'axios'
 
 const BASE_URL = 'toy/'
 const STORAGE_KEY = 'toyDB'
@@ -18,12 +19,12 @@ export const toyService = {
 
 const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
 const toy = {
- _id: 't101',
-name: 'Talking Doll',
-price: 123,
-labels: ['Doll', 'Battery Powered', 'Baby'], 
-createdAt: 1631031801011,
-inStock: true,
+    _id: 't101',
+    name: 'Talking Doll',
+    price: 123,
+    labels: ['Doll', 'Battery Powered', 'Baby'],
+    createdAt: 1631031801011,
+    inStock: true,
 }
 
 function query(filterBy = {}) {
@@ -46,6 +47,7 @@ function remove(toyId) {
 }
 
 function save(toy) {
+    console.log(toy);
     if (toy._id) {
         return httpService.put(BASE_URL, toy)
     } else {
@@ -54,17 +56,32 @@ function save(toy) {
 }
 
 function getEmptyToy() {
+    let imgUrl
+   return axios.get(`https://api.unsplash.com/search/photos?query=toy&client_id=fdYyDQ-ZI2NK6bXUbdCcF45RIy0Uj4r_UHNNScHxcZo`).then(res => { (imgUrl = res.data.results[utilService.getRandomIntInclusive(0,9)].urls.full) }).then(_ => {
+        return {
+            name: 'Toy-' + (Date.now() % 1000),
+            price: utilService.getRandomIntInclusive(100, 500),
+            inStock: utilService.getBol(),
+            labels: utilService.getRandomLabels(),
+            img: imgUrl,
+            // _id:utilService.makeId()
+        }
+
+    })
+    console.log(imgUrl);
+
     return {
         name: 'Toy-' + (Date.now() % 1000),
         price: utilService.getRandomIntInclusive(100, 500),
         inStock: utilService.getBol(),
-        labels: utilService.getRandomLabels()
+        labels: utilService.getRandomLabels(),
+        img: imgUrl
     }
 }
 
 
 function getDefaultFilter() {
-    return { name: '', price: '', label:'' }
+    return { name: '', price: '', label: '' }
 }
 
 // TEST DATA

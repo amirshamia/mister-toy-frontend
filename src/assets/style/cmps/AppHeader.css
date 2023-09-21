@@ -2,6 +2,7 @@
   background-color: var(--clr1);
   color: var(--clr1bg);
   padding: 1em;
+  align-items: center;
 }
 
 @media(max-width: 720px) {
