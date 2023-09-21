@@ -28,7 +28,6 @@ export function ToyDetails() {
 
     return (
         <section>
-            {console.log(toy.img)}
             <h3> Toy: {toy.name}</h3>
             <h2>Price: {toy.price}$</h2>
             {toy.inStock && <h1>In Stock</h1>}

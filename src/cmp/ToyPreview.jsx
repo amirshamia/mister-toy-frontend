@@ -6,9 +6,8 @@ export function ToyPreview({ toy }) {
             <h4>{toy.name}</h4>
             <p>Price: <span>${toy.price.toLocaleString()}</span></p>
             {toy.inStock && <h3>inStock</h3>}
+            <p>Labels:{toy.labels.map(label=> <span>{label}  </span> )} </p>
             <img src={toy.img} alt="" />
-           
-
         </article>
         
     )

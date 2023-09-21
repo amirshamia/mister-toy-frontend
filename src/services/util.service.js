@@ -85,23 +85,23 @@ function getAssetSrc(name) {
     return mod.default
 }
 
-function getBol(){
-    if(utilService.getRandomIntInclusive(0, 200)>100)return true
+function getBol() {
+    if (utilService.getRandomIntInclusive(0, 200) > 100) return true
     return false
 }
 
-function getRandomLabels(){
-    let labelsToSend=[]
+function getRandomLabels() {
+    let labelsToSend = []
     const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
     for (let i = 0; i < 3; i++) {
-labelsToSend.push(labels[getRandomIntInclusive(0,7)])      
+        labelsToSend.push(labels[getRandomIntInclusive(0, 7)])
     }
     return labelsToSend
 }
 
-function sortBy(items, key, dir =1) {
+function sortBy(items, key, dir = 1) {
     const isInt = ['createdAt', 'price']
     isInt.includes(key)
-        ? items.sort((a, b) => (a[key] - b[key])*dir)
-        : items.sort((a, b) => a[key].localeCompare(b[key]) *dir)
+        ? items.sort((a, b) => (a[key] - b[key]) * dir)
+        : items.sort((a, b) => a[key].localeCompare(b[key]) * dir)
 }

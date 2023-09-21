@@ -14,7 +14,9 @@ export const toyService = {
     save,
     remove,
     getEmptyToy,
-    getDefaultFilter
+    getDefaultFilter,
+    getLabelsCount,
+    getLabelsPrices
 }
 
 const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
@@ -30,7 +32,6 @@ const toy = {
 function query(filterBy = {}, sortBy) {
     return httpService.get(BASE_URL, filterBy)
         .then(toys => {
-            console.log(sortBy);
             if (sortBy) {
                 utilService.sortBy(toys, sortBy)
             }
@@ -53,7 +54,6 @@ function remove(toyId) {
 }
 
 function save(toy) {
-    console.log(toy);
     if (toy._id) {
         return httpService.put(BASE_URL, toy)
     } else {
@@ -70,24 +70,49 @@ function getEmptyToy() {
             inStock: utilService.getBol(),
             labels: utilService.getRandomLabels(),
             img: imgUrl,
+            createdAt: Date.now()
             // _id:utilService.makeId()
         }
 
     })
-    console.log(imgUrl);
-
-    return {
-        name: 'Toy-' + (Date.now() % 1000),
-        price: utilService.getRandomIntInclusive(100, 500),
-        inStock: utilService.getBol(),
-        labels: utilService.getRandomLabels(),
-        img: imgUrl
-    }
 }
 
 
 function getDefaultFilter() {
     return { name: '', price: '', label: '' }
+}
+function getLabelsCount() {
+
+    return query().then(toys => {
+        var count = []
+        for (let i = 0; i <= labels.length; i++) {
+            toys.map(toy => {
+                if (!toy.inStock) return
+                if (toy.labels.includes(labels[i])) {
+                    count[i] ? count[i]++ : count[i] = 1
+                }
+            })
+        }
+        return count
+    })
+
+}
+
+function getLabelsPrices() {
+    return query().then(toys => {
+        var sum = []
+        for (let i = 0; i <= labels.length; i++) {
+            var count = 0
+            toys.map(toy => {
+                if (toy.labels.includes(labels[i])) {
+                    count++
+                    sum[i] ? sum[i] += toy.price : sum[i] = toy.price
+                }
+            })
+            sum[i] = sum[i] / count
+        }
+        return sum
+    })
 }
 
 // TEST DATA

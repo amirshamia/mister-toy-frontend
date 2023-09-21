@@ -48,7 +48,6 @@ export function toyReducer(state = initialState, action = {}) {
             return { ...state, toys }
 
             case SET_SORT_BY:
-                console.log(action.sortByToEdit);
                 return { ...state, sortBy: action.sortByToEdit }
 
         case SET_FILTER_BY:

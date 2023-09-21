@@ -9,7 +9,7 @@ export function ToySort() {
 
     function handleChange({ target }) {
      const sortByToEdit=target.value
-     console.log(sortByToEdit);
+    //  console.log(sortByToEdit);
         dispatch({type: SET_SORT_BY, sortByToEdit})
     }
 
@@ -20,7 +20,6 @@ export function ToySort() {
             <option value="price">Price</option>
             <option value="name">Name</option>
             <option value="createdAt">Time</option>
-
         </select>
     )
 }
