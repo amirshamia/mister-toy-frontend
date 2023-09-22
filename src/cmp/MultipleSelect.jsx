@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-const ITEM_HEIGHT = 40;
+const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
     PaperProps: {
@@ -21,11 +21,18 @@ const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdo
 
 
 
-export default function MultipleSelect({ filterBy, handleChange }) {
+export default function MultipleSelect({ filterBy, handleChange,labelName }) {
     const theme = useTheme();
-    const [personName, setPersonName] = React.useState([]);
 
- 
+    function getStyles(label, labelName, theme) {
+        return {
+          fontWeight:
+          labelName.indexOf(label) === -1
+              ? theme.typography.fontWeightRegular
+              : theme.typography.fontWeightMedium,
+        };
+      }
+      
 
     return (
         <>
@@ -37,7 +44,7 @@ export default function MultipleSelect({ filterBy, handleChange }) {
                     multiple
                     value={filterBy.label}
                     onChange={handleChange}
-                    input={<OutlinedInput name="label" />}
+                    input={<OutlinedInput label='label' name="label" />}
                     MenuProps={MenuProps}
                 >
               
@@ -45,7 +52,7 @@ export default function MultipleSelect({ filterBy, handleChange }) {
                         <MenuItem
                             key={label}
                             value={label}
-
+                            style={getStyles(label,labelName, theme)}
 
                         >
                             {label}

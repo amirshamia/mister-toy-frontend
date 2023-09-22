@@ -6,7 +6,7 @@ import { Doughnut } from 'react-chartjs-2';
 import { toyService } from '../services/toy.service';
 import { useSelector } from 'react-redux';
 import { Bar } from 'react-chartjs-2';
-import faker from 'faker';
+import { BasicAccordion } from '../cmp/BasicAccordion';
 
 ChartJS.register(
     CategoryScale,
@@ -24,10 +24,10 @@ export function Inventory() {
     const [labelsPrices, setLabelsPrices] = useState()
 
     const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
-    useEffect(()=>{
+    useEffect(() => {
         toyService.getLabelsCount().then(setLabelsCount)
-         toyService.getLabelsPrices().then(setLabelsPrices)
-    },[])
+        toyService.getLabelsPrices().then(setLabelsPrices)
+    }, [])
 
     console.log(labelsCount);
     const dataLabels = {
@@ -74,15 +74,17 @@ export function Inventory() {
     };
     if (!labelsCount) return <div>loading</div>
     return (
-
-        <section className='flex justify-center charts-container'>
-            <article >
-                <Doughnut data={dataLabels} />
-            </article>
-            <article >
-                <Bar data={data} />
-            </article>
-        </section>
+        <>
+            <section className='flex justify-center charts-container'>
+                <article >
+                    <Doughnut data={dataLabels} />
+                </article>
+                <article>
+                    <Bar data={data} />
+                </article>
+            </section>
+            <BasicAccordion />
+        </>
 
     )
 }
