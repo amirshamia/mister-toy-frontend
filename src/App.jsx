@@ -9,6 +9,7 @@ import { ToyIndex } from './pages/ToyIndex'
 import { ToyDetails } from './pages/ToyDetails'
 import { ToyEdit } from './cmp/ToyEdit'
 import { Inventory } from './pages/Inventory'
+import { Locations } from './pages/Locations'
 
 
 export function App() {
@@ -25,6 +26,7 @@ export function App() {
                             <Route element={<ToyDetails />} path="/toy/:toyId" />
                             <Route element={<ToyEdit />} path="/edit/:toyId" />
                             <Route element={<Inventory />} path="/inventory" />
+                            <Route element={<Locations />} path="/locations" />
 
 
                         </Routes>
