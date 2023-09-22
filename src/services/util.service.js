@@ -92,10 +92,13 @@ function getBol() {
 
 function getRandomLabels() {
     let labelsToSend = []
-    const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
+    var labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
     for (let i = 0; i < 3; i++) {
-        labelsToSend.push(labels[getRandomIntInclusive(0, 7)])
+        var num = getRandomIntInclusive(0, labels.length-1)
+        labelsToSend.push(labels[num])
+        labels = labels.slice(0, num).concat(labels.slice(num + 1));
     }
+    console.log(labelsToSend);
     return labelsToSend
 }
 

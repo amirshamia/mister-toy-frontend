@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { utilService } from "../services/util.service"
 import { ToySort } from "./ToySort"
+import MultipleSelect from "./MultipleSelect"
 
 
 export function ToyFilter({ filterBy, onSetFilter }) {
@@ -22,19 +23,10 @@ export function ToyFilter({ filterBy, onSetFilter }) {
     }
     return (
         <section className="toy-filter">
-            <label htmlFor="label">lalbel:
-                <select value={filterByToEdit.label} onChange={handleChange} name="label" id="label">
-                    <option value=""></option>
-                    <option value="On wheels">On wheels</option>
-                    <option value="Box game">Box game</option>
-                    <option value="Art">Art</option>
-                    <option value="Baby">Baby</option>
-                    <option value="Doll">Doll</option>
-                    <option value="Puzzle">Puzzle</option>
-                    <option value="Outdoor">Outdoor</option>
-                    <option value="Battery Powered">Battery Powered</option>
-                </select>
-            </label>
+            <label htmlFor="label">
+         
+                <MultipleSelect filterBy={filterByToEdit} handleChange={handleChange}/>
+            </label >
             <label htmlFor="name">Search:
                 <input value={filterByToEdit.name} onChange={handleChange} name="name" type="text" id="name" />
             </label>

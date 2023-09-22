@@ -79,7 +79,7 @@ function getEmptyToy() {
 
 
 function getDefaultFilter() {
-    return { name: '', price: '', label: '' }
+    return { name: '', price: '', label: [] }
 }
 function getLabelsCount() {
 
