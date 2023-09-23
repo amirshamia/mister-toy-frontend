@@ -6,7 +6,7 @@ import { toyService } from '../services/toy.service.js'
 import { ToyList } from '../cmp/ToyList.jsx'
 import { ToyFilter } from '../cmp/ToyFilter.jsx'
 import { SET_FILTER_BY } from '../store/reducers/toy.reducer.js'
-import axios from 'axios'
+import { Loader } from '../cmp/Loader.jsx'
 
 export function ToyIndex() {
     const dispatch = useDispatch()
@@ -51,6 +51,7 @@ export function ToyIndex() {
         console.log(filterBy);
         dispatch({ type: SET_FILTER_BY, filterBy })
     }
+
     return (
         <div>
             <main>
@@ -64,7 +65,7 @@ export function ToyIndex() {
                 />
                 }
 
-                {isLoading && <div>Loading...</div>}
+                {isLoading && <Loader/>}
                 <hr />
                 {/* <pre>{JSON.stringify(cart, null, 2)}</pre> */}
             </main>
