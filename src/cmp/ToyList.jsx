@@ -11,7 +11,7 @@ export function ToyList({ toys, onRemoveToy }) {
             {toys.map(toy =>
                 <li className="toy-preview" key={toy._id}>
                     <ToyPreview toy={toy} />
-                    <div className="flex justify-center">
+                    <div className="bottom flex justify-center">
                         <button onClick={() => onRemoveToy(toy._id)}>x</button>
                         <button> <Link to={`/edit/${toy._id}`}>edit</Link>  </button>
                         <button><Link to={`/toy/${toy._id}`}>Details</Link></button>
