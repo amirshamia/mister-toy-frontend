@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { SET_SORT_BY } from "../store/reducers/toy.reducer"
+import { SelectLabels } from "./Selectlabels"
 
 
 export function ToySort() {
@@ -15,11 +16,13 @@ export function ToySort() {
 
 
     return (
-        <select value={sortBy} onChange={handleChange} name="sortBy" id="sortBy">
-            <option value="">Sort By</option>
-            <option value="price">Price</option>
-            <option value="name">Name</option>
-            <option value="createdAt">Time</option>
-        </select>
+
+        <SelectLabels handleChange={handleChange} sortBy={sortBy}/>
+        // <select value={sortBy} onChange={handleChange} name="sortBy" id="sortBy">
+        //     <option value="">Sort By</option>
+        //     <option value="price">Price</option>
+        //     <option value="name">Name</option>
+        //     <option value="createdAt">Time</option>
+        // </select>
     )
 }

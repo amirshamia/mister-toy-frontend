@@ -45,7 +45,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
     }
     return (
-        <section className="toy-filter">
+        <section className="toy-filter justify-between">
             <label htmlFor="label">
                 <MultipleSelect labelName={labelName} filterBy={filterByToEdit} handleChange={handleChange} />
             </label >
