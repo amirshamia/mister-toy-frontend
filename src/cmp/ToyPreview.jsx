@@ -6,9 +6,14 @@ export function ToyPreview({ toy }) {
             <h4>{toy.name}</h4>
             <p>Price: <span>${toy.price.toLocaleString()}</span></p>
             {toy.inStock && <h3>inStock</h3>}
-            <p>Labels:{toy.labels.map(label=> <span key={toy.label}>{label}  </span> )} </p>
+            <div>Labels:</div> <p className="labels-container">{toy.labels.map(label => {
+                if (!label) return
+                const labelTag = (label).split(' ').join('-')
+                console.log(labelTag);
+                return <span className={labelTag} key={label}>{label}  </span>
+            })} </p>
             <img src={toy.img} alt="" />
-        </article>
-        
+        </article >
+
     )
 }

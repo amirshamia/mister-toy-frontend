@@ -17,3 +17,50 @@
     padding-right: 20px;
 
 }
+
+.labels-container{
+    display: grid;
+    grid-auto-flow: column;
+}
+
+.labels-container span{
+    padding: 5px;
+    margin: 3px;
+
+}
+.labels-container div{
+    margin-bottom: 10px;
+}
+
+.Doll{
+    background-color: rgb(216, 104, 104);
+}
+
+.On-wheels{
+    background-color: rgb(27, 214, 27);
+}
+
+
+.Outdoor{
+    background-color: rgb(130, 130, 226);
+}
+
+.Baby{
+    background-color: rgb(255, 20, 255);
+}
+
+.Art{
+    background-color: peru;
+}
+
+.Puzzle{
+    background-color: yellow;
+}
+
+.Box-game{
+    background-color: pink;
+}
+
+.Battery-Powered{
+    background-color: aquamarine;
+}
