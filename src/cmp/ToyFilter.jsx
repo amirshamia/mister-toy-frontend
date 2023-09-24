@@ -48,10 +48,10 @@ export function ToyFilter({ filterBy, onSetFilter }) {
             <label htmlFor="label">
                 <MultipleSelect labelName={labelName} filterBy={filterByToEdit} handleChange={handleChange} />
             </label >
-            <label htmlFor="name">Search:
+            <label htmlFor="name">Search
                 <input value={filterByToEdit.name} onChange={handleChange} name="name" type="text" id="name" style={{width:'100%'}} />
             </label>
-            <label htmlFor="price">Price:
+            <label htmlFor="price">Price
                 <RangeSlider rangeValue={rangeValue} handleChange={handleChange} />                {/* <input onChange={handleChange} type="range" name="price" id="maxPrice" min={0} max={500} /> */}
             </label>
             <ToySort />

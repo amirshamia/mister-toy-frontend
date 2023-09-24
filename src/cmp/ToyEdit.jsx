@@ -4,6 +4,7 @@ import { toyService } from "../services/toy.service.js"
 import { showErrorMsg } from "../services/event-bus.service.js"
 import { saveToy } from "../store/actions/toy.actions.js"
 
+
 export function ToyEdit() {
     const [toy, setToy] = useState(null)
     const { toyId } = useParams()
@@ -23,10 +24,10 @@ export function ToyEdit() {
             })
 
     }
-function editToy(ev){
-    ev.preventDefault()
-    saveToy(toy).then(_=>navigate('/toy/'))
-}
+    function editToy(ev) {
+        ev.preventDefault()
+        saveToy(toy).then(_ => navigate(`/toy/${toyId}`))
+    }
 
     function handleChange({ target }) {
         const field = target.name
@@ -45,22 +46,27 @@ function editToy(ev){
             default:
                 break;
         }
-        setToy(prevToy=> ({...prevToy, [field]:value}))
+        setToy(prevToy => ({ ...prevToy, [field]: value }))
     }
 
     if (!toy) return <div> loading</div>
-const {name, price, inStock}= toy
+    const { name, price, inStock } = toy
     return (
-        <form  onSubmit={editToy}>
+        <form className="edit-form" onSubmit={editToy}>
             <label htmlFor="name">Name</label>
             <input onChange={handleChange} type="text" value={name} name="name" id="name" />
             <label htmlFor="price">Price</label>
 
-            <input onChange={handleChange} type="number" value={price} name="price" id="price"/>
+            <input onChange={handleChange} type="number" value={price} name="price" id="price" />
+            <div>
 
-            <input onChange={handleChange} type="checkbox"checked={inStock} name="inStock" id="inStock" />
-            <label htmlFor="inStock">in Stock</label>
+                <input onChange={handleChange} type="checkbox" checked={inStock} name="inStock" id="inStock" />
+                <label htmlFor="inStock">in Stock</label>
+            </div>
             <button>edit</button>
         </form>
     )
 }
+
+
+

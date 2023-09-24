@@ -20,7 +20,7 @@
 
 
 
-
+@import 'cmps/ToyEdit.css';
 @import 'cmps/ToyFilter.css';
 @import 'cmps/ToyList.css';
 @import 'cmps/ToyDetails.css';

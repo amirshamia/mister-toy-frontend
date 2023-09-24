@@ -21,7 +21,7 @@ export  function RangeSlider({handleChange,rangeValue}) {
         valueLabelDisplay="auto"
         getAriaValueText={valuetext}
         name="price"
-        min={0}
+        min={100}
         max={500}
       />
     </Box>

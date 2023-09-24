@@ -33,9 +33,10 @@ export function ToyDetails() {
             {toy.inStock && <h1>In Stock</h1>}
             {!toy.inStock && <h1>Out Of Stock</h1>}
             
-           <p className="labels-preview"> <div>Labels:</div> {toy.labels.map(label => {
+           <p className="labels-preview"> <span>Labels:</span> {toy.labels.map(label => {
                 if (!label) return
                 const labelTag = (label).split(' ').join('-')
+                console.log(labelTag);
                 return <span className={labelTag} key={label}>{label}  </span>
             })} </p>
             <button><Link to="/toy">Back</Link></button>
