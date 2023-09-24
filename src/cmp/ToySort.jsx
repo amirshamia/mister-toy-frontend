@@ -10,7 +10,6 @@ export function ToySort() {
 
     function handleChange({ target }) {
      const sortByToEdit=target.value
-    //  console.log(sortByToEdit);
         dispatch({type: SET_SORT_BY, sortByToEdit})
     }
 

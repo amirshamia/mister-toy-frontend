@@ -9,7 +9,6 @@ export function ToyPreview({ toy }) {
             <div>Labels:</div> <p className="labels-container">{toy.labels.map(label => {
                 if (!label) return
                 const labelTag = (label).split(' ').join('-')
-                console.log(labelTag);
                 return <span className={labelTag} key={label}>{label}  </span>
             })} </p>
             <img src={toy.img} alt="" />

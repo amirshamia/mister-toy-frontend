@@ -29,7 +29,6 @@ export function Inventory() {
         toyService.getLabelsPrices().then(setLabelsPrices)
     }, [])
 
-    console.log(labelsCount);
     const dataLabels = {
         labels: ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered'],
         datasets: [

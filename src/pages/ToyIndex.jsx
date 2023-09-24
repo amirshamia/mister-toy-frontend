@@ -48,7 +48,6 @@ export function ToyIndex() {
             })
     }
     function onSetFilter(filterBy) {
-        console.log(filterBy);
         dispatch({ type: SET_FILTER_BY, filterBy })
     }
 

@@ -1,7 +1,6 @@
 
 import React, { useState } from "react";
 import GoogleMapReact from 'google-map-react';
-import { Button } from "@mui/base";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 export function Locations() {
@@ -9,14 +8,15 @@ export function Locations() {
     const defaultProps = {
         center: {
             lat: 31.9632,
-            lng: 34.8041 
+            lng: 34.8041
         },
-        zoom: 11
+        zoom: 15
     };
-    const { lat, lng } = loc
     return (
         // Important! Always set the container height explicitly
+
         <section>
+            <h1>VISIT OUR SHOPS</h1>
             <div style={{ height: '60vh', width: '60%', margin: '10px auto' }}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: "AIzaSyCcepevgXQ0DFmsXrdyecMV11LMtvFSoWs" }}
@@ -24,8 +24,18 @@ export function Locations() {
                     defaultZoom={defaultProps.zoom}
                 >
                     <AnyReactComponent
-                        lat={lat}
-                        lng={lng}
+                        lat={32.0853}
+                        lng={34.7818}
+                        text="🏰"
+                    />
+                    <AnyReactComponent
+                        lat={32.7940}
+                        lng={34.9896}
+                        text="🏰"
+                    />
+                    <AnyReactComponent
+                        lat={31.9632}
+                        lng={34.8041}
                         text="🏰"
                     />
                 </GoogleMapReact>

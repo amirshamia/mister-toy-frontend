@@ -98,7 +98,6 @@ function getRandomLabels() {
         labelsToSend.push(labels[num])
         labels = labels.slice(0, num).concat(labels.slice(num + 1));
     }
-    console.log(labelsToSend);
     return labelsToSend
 }
 

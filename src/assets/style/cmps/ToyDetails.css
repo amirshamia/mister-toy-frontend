@@ -1,0 +1,16 @@
+.details-container{
+    display: grid;
+    place-items: center;
+}
+
+
+.labels-preview{
+    display: flex;
+align-items: center;
+}
+
+
+.labels-preview span{
+    padding: 10px;
+    margin: 10px;
+}

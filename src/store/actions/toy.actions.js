@@ -6,7 +6,6 @@ import { store } from "../store.js";
 export function loadToys() {
     const { filterBy } = store.getState().toyModule
     const { sortBy } = store.getState().toyModule
-console.log('hi');
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
     return toyService.query(filterBy,sortBy)
     .then(toys => {
