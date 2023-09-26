@@ -1,12 +1,12 @@
 /* Setup */
-@import 'setup/vars.css';
+@import 'setup/vars.scss';
 @import 'setup/typography.css';
 
 /* Base */
-@import 'base/base.css';
+@import 'base/base.scss';
 @import 'base/helpers.css';
 @import 'base/layout.css';
-@import 'base/forms.css';
+@import 'base/forms.scss';
 
 /* Components */
 @import 'cmps/AppHeader.css';

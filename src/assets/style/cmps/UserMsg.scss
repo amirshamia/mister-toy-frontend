@@ -9,11 +9,11 @@
 }
 
 .user-msg.success {
-    background-color: var(--clr1);
+    background-color: $clr1;
 }
 
 .user-msg.error {
-    background-color: var(--clr2);
+    background-color: $clr2;
 }
 
 .user-msg button {
