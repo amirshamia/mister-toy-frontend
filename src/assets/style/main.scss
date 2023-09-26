@@ -1,20 +1,20 @@
 /* Setup */
 @import 'setup/vars.scss';
-@import 'setup/typography.css';
+@import 'setup/typography.scss';
 
 /* Base */
 @import 'base/base.scss';
-@import 'base/helpers.css';
-@import 'base/layout.css';
+@import 'base/helpers.scss';
+@import 'base/layout.scss';
 @import 'base/forms.scss';
 
 /* Components */
-@import 'cmps/AppHeader.css';
-@import 'cmps/ToggleBtn.css';
-@import 'cmps/UserMsg.css';
-@import 'cmps/Inventory.css';
-@import 'cmps/Locations.css';
-@import 'cmps/Loader.css';
+@import 'cmps/AppHeader.scss';
+@import 'cmps/ToggleBtn.scss';
+@import 'cmps/UserMsg.scss';
+@import 'cmps/Inventory.scss';
+@import 'cmps/Locations.scss';
+@import 'cmps/Loader.scss';
 
 
 
