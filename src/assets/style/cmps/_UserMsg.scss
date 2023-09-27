@@ -6,18 +6,18 @@
     right: 1em;
     color: white;
     border-radius: 2px;
+
+    .success {
+        background-color: $clr1;
+    }
+
+    .error {
+        background-color: $clr2;
+    }
+     button {
+        font-size: .5em;
+        float: right;
+        margin: .5em;
+    }
 }
 
-.user-msg.success {
-    background-color: $clr1;
-}
-
-.user-msg.error {
-    background-color: $clr2;
-}
-
-.user-msg button {
-    font-size: .5em;
-    float: right;
-    margin: .5em;
-}

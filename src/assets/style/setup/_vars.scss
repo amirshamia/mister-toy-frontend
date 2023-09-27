@@ -1,6 +1,8 @@
 
   $clr1: #5f65b4;
   $clr2: #19cbcb;
+  $clr3: #2e4646;
+
 
   $clr1bg:#e7e7e7 ;
   $clr1bg-light: #c1f1e1;
@@ -11,3 +13,13 @@
   $gray2: rgb(155, 155, 155);
   $gray3: rgb(44, 44, 44);
 
+  $layoutPadding: 20px;
+
+  // LAYOUT BREAKPOINTS
+  $break-narrow: 600px;
+  $break-normal: 900px;
+  $break-wide: 1120px;
+  
+  $padded-break-narrow: $break-narrow + $layoutPadding * 2;
+  $padded-break-normal: $break-normal + $layoutPadding * 2;
+  $padded-break-wide: $break-wide + $layoutPadding * 2;

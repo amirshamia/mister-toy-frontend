@@ -1,5 +1,7 @@
+.location-btn {
+  button{
 
-.location-btn button{
-background-color: rgb(118, 118, 255);
-border: 5px solid rgb(209, 209, 209);
+    @include btn($bg: rgb(118, 118, 255));
+    border: 5px solid rgb(209, 209, 209);
+  }
 }

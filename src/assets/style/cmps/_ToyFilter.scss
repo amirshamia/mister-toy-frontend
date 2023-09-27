@@ -1,10 +1,17 @@
 .toy-filter {
     background-color: whitesmoke;
     padding: 1em;
-    display: flex;
+    display: grid;
     align-items: center;
     gap: 20px;
     border-bottom: 1px solid rgb(9, 9, 37);
     border-top: 1px solid rgb(9, 9, 37);
 
+    @include for-narrow-layout{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    @include for-normal-layout{
+        display:flex
+    }
 }

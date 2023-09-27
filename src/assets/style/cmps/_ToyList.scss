@@ -2,35 +2,35 @@
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-}
-
-.toy-list li {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    /* background-color: var($clr1bg); */
-    margin: 0.5em;
-    border: 1px solid #c3c3c3;
-    border-radius: 3px;
-    width: 250px;
-    padding-left: 20px;
-    padding-right: 20px;
-
+    li {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        /* background-color: var($clr1bg); */
+        margin: 0.5em;
+        border: 1px solid #c3c3c3;
+        border-radius: 17px;
+        width: 250px;
+        padding-left: 20px;
+        padding-right: 20px;
+        box-shadow: 1px 1px 1px 0px;
+    }
+    
 }
 
 .labels-container{
     display: grid;
     grid-auto-flow: column;
+    span{
+        padding: 5px;
+        margin: 3px;
+    
+    }
+    div{
+        margin-bottom: 10px;
+    }
 }
 
-.labels-container span{
-    padding: 5px;
-    margin: 3px;
-
-}
-.labels-container div{
-    margin-bottom: 10px;
-}
 
 .Doll{
     background-color: rgb(216, 104, 104);

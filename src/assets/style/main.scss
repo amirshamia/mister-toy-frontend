@@ -1,6 +1,8 @@
 /* Setup */
 @import 'setup/vars.scss';
 @import 'setup/typography.scss';
+@import 'setup/mixins.scss';
+
 
 /* Base */
 @import 'base/base.scss';
@@ -10,9 +12,8 @@
 
 /* Components */
 @import 'cmps/AppHeader.scss';
-@import 'cmps/ToggleBtn.scss';
 @import 'cmps/UserMsg.scss';
-@import 'cmps/Inventory.scss';
+@import 'cmps/Dashboard.scss';
 @import 'cmps/Locations.scss';
 @import 'cmps/Loader.scss';
 
@@ -20,7 +21,7 @@
 
 
 
-@import 'cmps/ToyEdit.css';
-@import 'cmps/ToyFilter.css';
-@import 'cmps/ToyList.css';
-@import 'cmps/ToyDetails.css';
+@import 'cmps/ToyEdit.scss';
+@import 'cmps/ToyFilter.scss';
+@import 'cmps/ToyList.scss';
+@import 'cmps/ToyDetails.scss';

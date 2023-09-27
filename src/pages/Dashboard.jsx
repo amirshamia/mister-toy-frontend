@@ -19,7 +19,7 @@ ChartJS.register(
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export function Inventory() {
+export function Dashboard() {
     const [labelsCount, setLabelsCount] = useState()
     const [labelsPrices, setLabelsPrices] = useState()
 

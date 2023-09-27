@@ -1,0 +1,18 @@
+.charts-container {
+    display: grid;
+
+    article {
+        width: 80vw;
+        height: 55vh;
+        margin-bottom: 20px;
+    }
+ 
+    @include for-wide-layout{
+        display: flex;
+        article {
+            width: 50vw;
+            height: 55vh;
+            margin-bottom: 20px;
+        }
+    }
+}
