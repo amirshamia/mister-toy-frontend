@@ -24,11 +24,10 @@ function getById(userId) {
     return storageService.get(STORAGE_KEY, userId)
 }
 
-function login({ username, password }) {
-    return httpService.post(BASE_URL + 'login', { username, password })
-        .then(user => {
+async function login({ username, password }) {
+    const user= await httpService.post(BASE_URL + 'login', { username, password })
             if (user) return _setLoggedinUser(user)
-        })
+     
 }
 
 function signup({ username, password, fullname }) {

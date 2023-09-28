@@ -65,22 +65,41 @@ export function Dashboard() {
         labels: ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered'],
         datasets: [
             {
-                label: 'Prices',
+                label: 'Avg Prices',
                 data: labelsPrices,
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                backgroundColor: 'rgba(22 ,49, 178, 0.7)',
             },
         ],
     };
     if (!labelsCount) return <div>loading</div>
+    if (!labelsPrices) return <div>loading</div>
+
     return (
         <>
             <section className='flex justify-center charts-container'>
                 <article >
                     <Doughnut data={dataLabels} />
+
                 </article>
                 <article>
                     <Bar data={data} />
                 </article>
+            </section>
+            <section className='data'>
+       
+                <div>
+                    {labels.map((label, idx) => {
+                        return <span key={label}>{label}:{labelsCount[idx]}</span>
+                    })}
+                </div>
+
+
+                <div>
+                    {labels.map((label, idx) => {
+                        return <span key={label}>{label}:{Math.ceil(labelsPrices[idx])}$</span>
+                    })}
+                </div>
+
             </section>
             <BasicAccordion />
         </>

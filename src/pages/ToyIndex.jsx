@@ -17,35 +17,40 @@ export function ToyIndex() {
     const [toyToSave, setToyToSave] = useState()
 
     useEffect(() => {
-        loadToys()
-            .catch(err => {
-                console.log('err:', err)
-                showErrorMsg('Cannot load toys')
-            })
-    }, [filterBy,sortBy])
+        try {
+            loadToys()
+        } catch (err) {
+            console.log('err:', err)
+            showErrorMsg('Cannot load toys')
+        }
+    }, [filterBy, sortBy])
 
-    function onRemoveToy(toyd) {
+    async function onRemoveToy(toyd) {
         // removetoy(toyd)
-        removeToyOptimistic(toyd)
-            .then(() => {
-                showSuccessMsg('toy removed')
-            })
-            .catch(err => {
-                console.log('Cannot remove toy', err)
-                showErrorMsg('Cannot remove toy')
-            })
+
+        try {
+            removeToyOptimistic(toyd)
+       
+            showSuccessMsg('toy removed')
+        } catch (error) {
+            console.log('Cannot remove toy', err)
+            showErrorMsg('Cannot remove toy')
+        }
+    
     }
-    function onAddToy() {
-        toyService.getEmptyToy()
-            .then(setToyToSave)
-            .then(saveToy(toyToSave))
-            .then(savedToy => {
-                showSuccessMsg(`toy added (id: ${savedToy._id})`)
-            })
-            .catch(err => {
-                console.log('Cannot add toy', err)
-                showErrorMsg('Cannot add toy')
-            })
+    async function onAddToy() {
+        try {
+            const emptyToy = await toyService.getEmptyToy()
+            setToyToSave(emptyToy)
+
+            const savedToy = await saveToy(toyToSave)
+
+            showSuccessMsg(`toy added (id: ${savedToy._id})`)
+        } catch (err) {
+            console.log('Cannot add toy', err)
+            showErrorMsg('Cannot add toy')
+        }
+
     }
     function onSetFilter(filterBy) {
         dispatch({ type: SET_FILTER_BY, filterBy })
@@ -64,7 +69,7 @@ export function ToyIndex() {
                 />
                 }
 
-                {isLoading && <Loader/>}
+                {isLoading && <Loader />}
                 <hr />
                 {/* <pre>{JSON.stringify(cart, null, 2)}</pre> */}
             </main>

@@ -14,14 +14,18 @@ export function ToyDetails() {
         loadtoy()
     }, [toyId])
 
-    function loadtoy() {
-        toyService.getById(toyId)
-            .then((toy) => setToy(toy))
-            .catch((err) => {
-                console.log('Had issues in toy details', err)
-                showErrorMsg('Cannot load toy')
-                navigate('/toy')
-            })
+    async function loadtoy() {
+
+        try {
+            const toy = await toyService.getById(toyId)
+            setToy(toy)
+        } catch (err) {
+            console.log('Had issues in toy details', err)
+            showErrorMsg('Cannot load toy')
+            navigate('/toy')
+        }
+
+
     }
 
     if (!toy) return <div>loading</div>
@@ -32,15 +36,15 @@ export function ToyDetails() {
             <h2>Price: {toy.price}$</h2>
             {toy.inStock && <h1>In Stock</h1>}
             {!toy.inStock && <h1>Out Of Stock</h1>}
-            
-           <p className="labels-preview"> <span>Labels:</span> {toy.labels.map(label => {
+
+            <p className="labels-preview"> <span>Labels:</span> {toy.labels.map(label => {
                 if (!label) return
                 const labelTag = (label).split(' ').join('-')
                 console.log(labelTag);
                 return <span className={labelTag} key={label}>{label}  </span>
             })} </p>
             <button><Link to="/toy">Back</Link></button>
-            <img style={{width:'50vw'}} src={toy.img} alt="a" />
+            <img style={{ width: '50vw' }} src={toy.img} alt="a" />
         </section>
     )
 }

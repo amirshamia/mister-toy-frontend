@@ -5,14 +5,43 @@
         width: 80vw;
         height: 55vh;
         margin-bottom: 20px;
+        background-color: rgba(245 245 245);
+        border-radius: 11px;
+        box-shadow: 1px 1px 1px 1px #677c81;
+        margin-inline-end: 10px;
+        margin-top: 10px;
+        padding-bottom: 10px;
     }
- 
-    @include for-wide-layout{
+
+    @include for-wide-layout {
         display: flex;
+
         article {
             width: 50vw;
             height: 55vh;
             margin-bottom: 20px;
         }
     }
+
+}
+
+.data {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+
+    div {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 10px;
+        width: 46vw;
+        padding: 5px;
+        background-color: $clr2bg ;
+        border-radius: 11px;
+        box-shadow: 1px 1px 1px 1px;
+        margin-inline-end: 10px;
+
+    }
+
+    margin-bottom: 20px;
 }

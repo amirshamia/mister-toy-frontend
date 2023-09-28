@@ -14,19 +14,26 @@ export function ToyEdit() {
         loadtoy()
     }, [toyId])
 
-    function loadtoy() {
-        toyService.getById(toyId)
-            .then((toy) => setToy(toy))
-            .catch((err) => {
-                console.log('Had issues in toy details', err)
-                showErrorMsg('Cannot load toy')
-                navigate('/toy')
-            })
-
+    async function loadtoy() {
+        try {
+            const toy = await toyService.getById(toyId)
+            setToy(toy)
+        } catch (err) {
+            console.log('Had issues in toy details', err)
+            showErrorMsg('Cannot load toy')
+            navigate('/toy')
+        }
     }
-    function editToy(ev) {
+    async function editToy(ev) {
         ev.preventDefault()
-        saveToy(toy).then(_ => navigate(`/toy/${toyId}`))
+        try {
+           await saveToy(toy)
+            navigate(`/toy/${toyId}`)
+
+        } catch (err) {
+            console.log('Had issues in toy details', err)
+            showErrorMsg('Cannot save toy')
+        }
     }
 
     function handleChange({ target }) {

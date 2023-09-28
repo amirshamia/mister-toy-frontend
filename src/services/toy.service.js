@@ -81,25 +81,26 @@ function getEmptyToy() {
 function getDefaultFilter() {
     return { name: '', price: '', label: [] }
 }
-function getLabelsCount() {
+async function getLabelsCount() {
 
-    return query().then(toys => {
-        var count = []
-        for (let i = 0; i <= labels.length; i++) {
-            toys.map(toy => {
-                if (!toy.inStock) return
-                if (toy.labels.includes(labels[i])) {
-                    count[i] ? count[i]++ : count[i] = 1
-                }
-            })
-        }
-        return count
-    })
+    const toys = await query()
+    var count = []
+    for (let i = 0; i <= labels.length; i++) {
+        toys.map(toy => {
+            if (!toy.inStock) return
+            if (toy.labels.includes(labels[i])) {
+                count[i] ? count[i]++ : count[i] = 1
+            }
+        })
+    }
+
+    return count
+
 
 }
 
-function getLabelsPrices() {
-    return query().then(toys => {
+async function getLabelsPrices() {
+    const toys = await query()
         var sum = []
         for (let i = 0; i <= labels.length; i++) {
             var count = 0
@@ -111,8 +112,9 @@ function getLabelsPrices() {
             })
             sum[i] = sum[i] / count
         }
+
         return sum
-    })
+ 
 }
 
 // TEST DATA

@@ -6,7 +6,6 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 export function SelectLabels({handleChange,sortBy}) {
-  const [age, setAge] = React.useState('');
 
  
 

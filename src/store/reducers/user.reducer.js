@@ -4,7 +4,6 @@ export const SET_USER = 'SET_USER'
 export const SET_USER_SCORE = 'SET_USER_SCORE'
 
 const initialState = {
-    count: 101,
     loggedinUser: userService.getLoggedinUser()
 }
 
