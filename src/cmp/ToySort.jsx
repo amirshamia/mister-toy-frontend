@@ -5,7 +5,7 @@ import { SelectLabels } from "./Selectlabels"
 
 
 export function ToySort() {
-    const sortBy = useSelector(storeState => storeState.toyModule.sortBy)
+    const sortBy = useSelector(storeState => storeState.toyModule.filterBy.sort)
     const dispatch = useDispatch()
 
     function handleChange({ target }) {
@@ -17,11 +17,6 @@ export function ToySort() {
     return (
 
         <SelectLabels handleChange={handleChange} sortBy={sortBy}/>
-        // <select value={sortBy} onChange={handleChange} name="sortBy" id="sortBy">
-        //     <option value="">Sort By</option>
-        //     <option value="price">Price</option>
-        //     <option value="name">Name</option>
-        //     <option value="createdAt">Time</option>
-        // </select>
+      
     )
 }

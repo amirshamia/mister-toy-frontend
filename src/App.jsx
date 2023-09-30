@@ -10,6 +10,7 @@ import { ToyDetails } from './pages/ToyDetails'
 import { ToyEdit } from './cmp/ToyEdit'
 import { Dashboard } from './pages/Dashboard'
 import { Locations } from './pages/Locations'
+import { Msgs } from './cmp/Msgs'
 
 
 export function App() {
@@ -22,8 +23,11 @@ export function App() {
                     <main>
                         <Routes>
                             <Route element={<HomePage />} path="/" />
-                            <Route element={<ToyIndex />} path="/toy" />
+                            <Route element={<ToyIndex />} path="/toy/" />
                             <Route element={<ToyDetails />} path="/toy/:toyId" />
+                                <Route path="/toy/:toyId/msgs" element={<Msgs />} />
+
+                           
                             <Route element={<ToyEdit />} path="/edit/:toyId" />
                             <Route element={<Dashboard />} path="/dashboard" />
                             <Route element={<Locations />} path="/locations" />
@@ -31,7 +35,7 @@ export function App() {
 
                         </Routes>
                     </main>
-            
+
                 </section>
             </Router>
         </Provider>

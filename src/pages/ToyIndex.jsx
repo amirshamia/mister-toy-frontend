@@ -14,6 +14,8 @@ export function ToyIndex() {
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
     const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
+    const user = useSelector(storeState => storeState.userModule.loggedinUser)
+
     const [toyToSave, setToyToSave] = useState()
 
     useEffect(() => {
@@ -30,13 +32,13 @@ export function ToyIndex() {
 
         try {
             removeToyOptimistic(toyd)
-       
+
             showSuccessMsg('toy removed')
         } catch (error) {
             console.log('Cannot remove toy', err)
             showErrorMsg('Cannot remove toy')
         }
-    
+
     }
     async function onAddToy() {
         try {
@@ -60,7 +62,7 @@ export function ToyIndex() {
         <div>
             <main>
                 <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
-                <button onClick={onAddToy}>Add Toy </button>
+                {user && <button onClick={onAddToy}>Add Toy </button>}
 
                 {!isLoading && <ToyList
                     toys={toys}
@@ -71,7 +73,6 @@ export function ToyIndex() {
 
                 {isLoading && <Loader />}
                 <hr />
-                {/* <pre>{JSON.stringify(cart, null, 2)}</pre> */}
             </main>
         </div>
     )

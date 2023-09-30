@@ -7,7 +7,7 @@ import Select from '@mui/material/Select';
 
 export function SelectLabels({handleChange,sortBy}) {
 
- 
+
 
   return (
     <div>

@@ -15,7 +15,6 @@ export const userService = {
     signup,
     getById,
     getLoggedinUser,
-    updateScore
 }
 
 window.us = userService
@@ -30,28 +29,14 @@ async function login({ username, password }) {
      
 }
 
-function signup({ username, password, fullname }) {
-    const user = { username, password, fullname, score: 10000 }
-    return httpService.post(BASE_URL + 'signup', user)
-        .then(user => {
-            if (user) return _setLoggedinUser(user)
-        })
+async function signup({ username, password, fullname }) {
+    const user = { username, password, fullname}
+    const userToSet =await httpService.post(BASE_URL + 'signup', user)
+            if (userToSet) return _setLoggedinUser(userToSet)
+      
 
 }
 
-function updateScore(diff) {
-    return userService.getById(getLoggedinUser()._id)
-        .then(user => {
-            if (user.score + diff < 0) return Promise.reject('No credit')
-            user.score += diff
-            return storageService.put(STORAGE_KEY, user)
-
-        })
-        .then(user => {
-            _setLoggedinUser(user)
-            return user.score
-        })
-}
 
 function logout() {
     return httpService.post(BASE_URL + 'logout')
@@ -65,7 +50,7 @@ function getLoggedinUser() {
 }
 
 function _setLoggedinUser(user) {
-    const userToSave = { _id: user._id, fullname: user.fullname, score: user.score }
+    const userToSave = { _id: user._id, fullname: user.fullname, isAdmin:user.isAdmin }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(userToSave))
     return userToSave
 }

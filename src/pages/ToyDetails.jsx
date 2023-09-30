@@ -1,12 +1,15 @@
 
 import { useEffect, useState } from "react"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { Link, Outlet, useNavigate, useParams } from "react-router-dom"
 import { toyService } from "../services/toy.service.js"
 import { showErrorMsg } from "../services/event-bus.service.js"
+import { useSelector } from "react-redux"
 
 
 export function ToyDetails() {
     const [toy, setToy] = useState(null)
+    const user = useSelector(storeState => storeState.userModule.loggedinUser)
+
     const { toyId } = useParams()
     const navigate = useNavigate()
 
@@ -31,21 +34,26 @@ export function ToyDetails() {
     if (!toy) return <div>loading</div>
 
     return (
-        <section className="details-container">
-            <h3> Toy: {toy.name}</h3>
-            <h2>Price: {toy.price}$</h2>
-            {toy.inStock && <h1>In Stock</h1>}
-            {!toy.inStock && <h1>Out Of Stock</h1>}
+        <>
+            <section className="details-container">
+                <h3> Toy: {toy.name}</h3>
+                <h2>Price: {toy.price}$</h2>
+                {toy.inStock && <h1>In Stock</h1>}
+                {!toy.inStock && <h1>Out Of Stock</h1>}
 
-            <p className="labels-preview"> <span>Labels:</span> {toy.labels.map(label => {
-                if (!label) return
-                const labelTag = (label).split(' ').join('-')
-                console.log(labelTag);
-                return <span className={labelTag} key={label}>{label}  </span>
-            })} </p>
-            <button><Link to="/toy">Back</Link></button>
-            <img style={{ width: '50vw' }} src={toy.img} alt="a" />
-        </section>
+                <p className="labels-preview"> <span>Labels:</span> {toy.labels.map(label => {
+                    if (!label) return
+                    const labelTag = (label).split(' ').join('-')
+                    return <span className={labelTag} key={label}>{label}  </span>
+                })} </p>
+                <button><Link to="/toy">Back</Link></button>
+                <img style={{ width: '50vw' }} src={toy.img} alt="a" />
+            </section>
+            <Link to="/toy/:toyId/msgs">msgs</Link>
+            <section>
+                <Outlet />
+            </section>
+        </>
     )
 }
 

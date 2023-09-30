@@ -28,6 +28,7 @@ export function toyReducer(state = initialState, action = {}) {
         // Cars
         case SET_TOYS:
             lastToys = [...action.toys]
+  
             return { ...state, toys: action.toys, lastToys }
 
         case REMOVE_TOY:

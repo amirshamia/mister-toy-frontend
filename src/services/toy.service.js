@@ -29,14 +29,14 @@ const toy = {
     inStock: true,
 }
 
-function query(filterBy = {}, sortBy) {
-    return httpService.get(BASE_URL, filterBy)
-        .then(toys => {
-            if (sortBy) {
-                utilService.sortBy(toys, sortBy)
-            }
-            return toys
-        })
+async function query(filterBy = {}, sortBy) {
+    const toys = await httpService.get(BASE_URL, filterBy)
+
+    if (sortBy) {
+        utilService.sortBy(toys, sortBy)
+    }
+    return toys
+
     //     return toys.filter(toy =>
     //         regExp.test(toy.vendor) &&
     //         toy.price <= filterBy.maxPrice
@@ -70,8 +70,8 @@ function getEmptyToy() {
             inStock: utilService.getBol(),
             labels: utilService.getRandomLabels(),
             img: imgUrl,
-            createdAt: Date.now()
-            // _id:utilService.makeId()
+            createdAt: Date.now(),
+            msgs: []
         }
 
     })
@@ -79,7 +79,7 @@ function getEmptyToy() {
 
 
 function getDefaultFilter() {
-    return { name: '', price: '', label: [] }
+    return { name: '', price: '', label: [], sort: '' }
 }
 async function getLabelsCount() {
 
@@ -101,20 +101,20 @@ async function getLabelsCount() {
 
 async function getLabelsPrices() {
     const toys = await query()
-        var sum = []
-        for (let i = 0; i <= labels.length; i++) {
-            var count = 0
-            toys.map(toy => {
-                if (toy.labels.includes(labels[i])) {
-                    count++
-                    sum[i] ? sum[i] += toy.price : sum[i] = toy.price
-                }
-            })
-            sum[i] = sum[i] / count
-        }
+    var sum = []
+    for (let i = 0; i <= labels.length; i++) {
+        var count = 0
+        toys.map(toy => {
+            if (toy.labels.includes(labels[i])) {
+                count++
+                sum[i] ? sum[i] += toy.price : sum[i] = toy.price
+            }
+        })
+        sum[i] = sum[i] / count
+    }
 
-        return sum
- 
+    return sum
+
 }
 
 // TEST DATA
