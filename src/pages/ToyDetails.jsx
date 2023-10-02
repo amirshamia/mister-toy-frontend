@@ -4,16 +4,21 @@ import { Link, Outlet, useNavigate, useParams } from "react-router-dom"
 import { toyService } from "../services/toy.service.js"
 import { showErrorMsg } from "../services/event-bus.service.js"
 import { useSelector } from "react-redux"
+import { saveToy } from "../store/actions/toy.actions.js"
+import { ChatApp } from "./Chat.jsx"
 
 
 export function ToyDetails() {
     const [toy, setToy] = useState(null)
     const user = useSelector(storeState => storeState.userModule.loggedinUser)
+    const [msg, setMsg] = useState(toyService.getEmptyMsg())
+    const [review, setReview] = useState(toyService.getEmptyReview())
 
     const { toyId } = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
+        setMsg(prevMsg => ({ ...prevMsg, by: user }))
         loadtoy()
     }, [toyId])
 
@@ -28,6 +33,30 @@ export function ToyDetails() {
             navigate('/toy')
         }
 
+
+    }
+    function handleChangeMsg({ target }) {
+        setMsg(prevMsg => ({ ...prevMsg, txt: target.value }))
+    }
+
+    async function submitMsg(ev) {
+        ev.preventDefault()
+       const msgSaved= await toyService.addMsg(toy._id, msg)
+       console.log(msgSaved, msg);
+        setToy(prevToy => ({ ...prevToy,  msgs:[  ...prevToy.msgs ||[], msg ] }))
+        saveToy(toy)
+        setMsg(toyService.getEmptyMsg())
+
+    }
+    function handleChangeReview({ target }) {
+        setReview(prevReview => ({ ...prevReview, txt: target.value }))
+    }
+
+    async function submitReview(ev) {
+        ev.preventDefault()
+        setReview(prevReview => ({ ...prevReview, userId:user._id, toyId:toy._id}))
+        await toyService.addReview(toy._id,review)
+        setReview(toyService.getEmptyReview())
 
     }
 
@@ -48,10 +77,30 @@ export function ToyDetails() {
                 })} </p>
                 <button><Link to="/toy">Back</Link></button>
                 <img style={{ width: '50vw' }} src={toy.img} alt="a" />
+            { toy.msgs && <ul>
+                    {toy.msgs.map(msg=> <li key={msg.id}> {msg.txt} </li> )}
+                </ul>}
             </section>
-            <Link to="/toy/:toyId/msgs">msgs</Link>
+            <section className="reviews">
+                <form onSubmit={submitMsg}>
+
+                    <label htmlFor="msg">
+                        <input value={msg.txt} onChange={handleChangeMsg} type="textarea" name="msg" id="msg" />
+                        <button >add message</button>
+                    </label>
+                </form>
+            </section>
+            <section className="reviews">
+                <form onSubmit={submitReview}>
+
+                    <label htmlFor="review">
+                        <input value={review.txt} onChange={handleChangeReview} type="textarea" name="review" id="review" />
+                        <button >add review</button>
+                    </label>
+                </form>
+            </section>
             <section>
-                <Outlet />
+                <ChatApp toy={toy}/>
             </section>
         </>
     )

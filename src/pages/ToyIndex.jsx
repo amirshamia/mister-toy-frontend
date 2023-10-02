@@ -5,8 +5,9 @@ import { loadToys, removeToyOptimistic, saveToy } from '../store/actions/toy.act
 import { toyService } from '../services/toy.service.js'
 import { ToyList } from '../cmp/ToyList.jsx'
 import { ToyFilter } from '../cmp/ToyFilter.jsx'
-import { SET_FILTER_BY } from '../store/reducers/toy.reducer.js'
+import { ADD_TOY, REMOVE_TOY, SET_FILTER_BY } from '../store/reducers/toy.reducer.js'
 import { Loader } from '../cmp/Loader.jsx'
+import { SOCKET_EVENT_TOY_ADDED, SOCKET_EVENT_TOY_REMOVED, socketService } from '../services/socket.service.js'
 
 export function ToyIndex() {
     const dispatch = useDispatch()
@@ -24,6 +25,18 @@ export function ToyIndex() {
         } catch (err) {
             console.log('err:', err)
             showErrorMsg('Cannot load toys')
+        }
+        socketService.on(SOCKET_EVENT_TOY_ADDED, toy => {
+            dispatch({type:ADD_TOY ,toy})
+        })
+
+        socketService.on(SOCKET_EVENT_TOY_REMOVED, toyId => {
+            dispatch({type:REMOVE_TOY ,toyId})
+        })
+
+        return () => {
+            socketService.off(SOCKET_EVENT_TOY_ADDED)
+            socketService.off(SOCKET_EVENT_TOY_REMOVED)
         }
     }, [filterBy, sortBy])
 
@@ -46,7 +59,6 @@ export function ToyIndex() {
             setToyToSave(emptyToy)
 
             const savedToy = await saveToy(toyToSave)
-
             showSuccessMsg(`toy added (id: ${savedToy._id})`)
         } catch (err) {
             console.log('Cannot add toy', err)

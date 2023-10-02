@@ -16,7 +16,11 @@ export const toyService = {
     getEmptyToy,
     getDefaultFilter,
     getLabelsCount,
-    getLabelsPrices
+    getLabelsPrices,
+    getEmptyMsg,
+    addMsg,
+    getEmptyReview,
+    addReview
 }
 
 const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
@@ -61,6 +65,21 @@ function save(toy) {
     }
 }
 
+async function addMsg(toyId, msg) {
+    console.log(msg);
+
+    // console.log('toyId',toyId , msg)
+    const savedMsg = await httpService.post(`toy/${toyId}/msg`, { ...msg })
+    return savedMsg
+}
+async function addReview(toyId, review) {
+    console.log(review);
+
+    // console.log('toyId',toyId , review)
+    const savedReview = await httpService.post(`toy/${toyId}/review`, { ...review })
+    return savedReview
+}
+
 function getEmptyToy() {
     let imgUrl
     return axios.get(`https://api.unsplash.com/search/photos?query=toy&client_id=fdYyDQ-ZI2NK6bXUbdCcF45RIy0Uj4r_UHNNScHxcZo`).then(res => { (imgUrl = res.data.results[utilService.getRandomIntInclusive(0, 9)].urls.full) }).then(_ => {
@@ -75,6 +94,20 @@ function getEmptyToy() {
         }
 
     })
+}
+function getEmptyMsg() {
+    return {
+        id: utilService.makeId(),
+        txt: '',
+        by: {}
+    }
+}
+function getEmptyReview() {
+    return {
+        userId: '',
+        txt: '',
+        toyId: ''
+    }
 }
 
 
